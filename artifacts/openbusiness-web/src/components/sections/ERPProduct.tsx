@@ -1,162 +1,338 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { MockWindow } from "@/components/ui/mock-window";
-import { 
-  BarChart3, Settings2, PackageSearch, Workflow, 
-  AlertTriangle, LineChart, Zap, ArrowRight, Activity, TrendingUp
+import {
+  BarChart3, Workflow, PackageSearch, AlertTriangle,
+  Zap, ArrowRight, Activity, TrendingUp, CheckCircle2,
+  Settings2, LineChart, BrainCircuit, ShieldCheck, Clock
 } from "lucide-react";
+
+const fadeUp = { hidden: { opacity: 0, y: 24 }, visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: "easeOut" } } };
+const fadeLeft = { hidden: { opacity: 0, x: -24 }, visible: { opacity: 1, x: 0, transition: { duration: 0.55, ease: "easeOut" } } };
+const fadeRight = { hidden: { opacity: 0, x: 24 }, visible: { opacity: 1, x: 0, transition: { duration: 0.55, ease: "easeOut" } } };
 
 export function ERPProduct() {
   return (
-    <section id="erp-intel" className="relative pt-32 pb-24 overflow-hidden border-t border-white/5 bg-[#080B12]">
-      {/* Background glow ERP */}
+    <section id="erp-intel" className="relative pt-32 pb-24 overflow-hidden bg-[#080B12]">
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1200px] h-[800px] opacity-30 pointer-events-none mix-blend-screen">
-        <img 
-          src={`${import.meta.env.BASE_URL}images/hero-glow-erp.png`} 
-          alt="Abstract Glow ERP" 
-          className="w-full h-full object-cover rounded-full blur-3xl opacity-50"
-        />
+        <img src={`${import.meta.env.BASE_URL}images/hero-glow-erp.png`} alt="" className="w-full h-full object-cover rounded-full blur-3xl opacity-50" />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
-        {/* HERO */}
+
+        {/* ── HERO ── */}
         <div className="text-center max-w-4xl mx-auto mb-20">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
+          <motion.div initial="hidden" animate="visible" variants={fadeUp}>
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal-500/10 text-teal-400 text-sm font-medium mb-6 border border-teal-500/20">
-              <Activity className="w-4 h-4" />
-              <span>OpenBusiness ERP Intelligence</span>
+              <Activity className="w-4 h-4" /> OpenBusiness ERP Intelligence
             </div>
-            <h2 className="text-5xl md:text-7xl font-bold mb-6 tracking-tight text-gradient">
-              Add AI Intelligence to <br className="hidden md:block"/> <span className="text-gradient-erp">Your ERP</span>
-            </h2>
-            <p className="text-lg md:text-xl text-muted-foreground mb-10 max-w-2xl mx-auto">
-              Connect to your existing ERP systems to monitor operations in real-time, automate complex workflows, and gain predictive business insights.
+            <h1 className="text-5xl md:text-7xl font-bold mb-6 tracking-tight">
+              Add AI Intelligence to <span className="text-gradient-erp">Your ERP</span>
+            </h1>
+            <p className="text-lg md:text-xl text-muted-foreground mb-10 max-w-2xl mx-auto leading-relaxed">
+              No migration required. OpenBusiness.ai connects to your existing ERP and adds AI-powered operational insights, workflow automation, and decision support — right on top of the system you already run.
             </p>
-            <Button size="lg" variant="erp" className="w-full sm:w-auto group" onClick={() => {}}>
-              Schedule a Demo
-              <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            <Button size="lg" variant="erp" className="group">
+              Schedule a Demo <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Button>
           </motion.div>
         </div>
 
-        {/* ERP MOCKUP */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, delay: 0.2 }}
-          className="mb-32 relative"
-        >
-           <MockWindow title="Operations Command Center" className="flex flex-col h-[500px]">
-            {/* Top metrics bar */}
-            <div className="bg-[#0A0D14] border-b border-white/5 p-4 flex justify-between items-center overflow-x-auto gap-4">
+        {/* ── HERO MOCKUP ── */}
+        <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.2 }} className="mb-28 relative">
+          <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#080B12] to-transparent z-20 pointer-events-none" />
+          <MockWindow title="Operations Command Center" className="flex flex-col h-[520px]">
+            <div className="bg-[#0A0D14] border-b border-white/5 p-4 flex gap-6 overflow-x-auto">
               {[
-                { label: "Global Inventory Val", val: "$4.2M", up: true },
-                { label: "Active Workflows", val: "1,204", up: true },
+                { label: "Inventory Value", val: "$4.2M", up: true, alert: false },
+                { label: "Active Workflows", val: "1,204", up: true, alert: false },
                 { label: "Supply Chain Alerts", val: "3", up: false, alert: true },
-                { label: "Fulfillment Rate", val: "98.4%", up: true },
+                { label: "Fulfillment Rate", val: "98.4%", up: true, alert: false },
               ].map((m, i) => (
                 <div key={i} className="shrink-0">
                   <div className="text-xs text-muted-foreground mb-1">{m.label}</div>
-                  <div className={`text-xl font-bold flex items-center gap-2 ${m.alert ? 'text-amber-400' : 'text-white'}`}>
+                  <div className={`text-xl font-bold flex items-center gap-1.5 ${m.alert ? 'text-amber-400' : 'text-white'}`}>
                     {m.val}
-                    {!m.alert && (m.up ? <TrendingUp className="w-3 h-3 text-teal-500" /> : <TrendingUp className="w-3 h-3 text-destructive rotate-180" />)}
+                    {!m.alert && <TrendingUp className={`w-3.5 h-3.5 ${m.up ? 'text-teal-400' : 'text-red-400 rotate-180'}`} />}
                     {m.alert && <AlertTriangle className="w-4 h-4" />}
                   </div>
                 </div>
               ))}
             </div>
-            
-            {/* Main Area */}
             <div className="flex-1 flex bg-[#06080C]">
-              {/* Chart area mock */}
               <div className="flex-1 p-6 border-r border-white/5">
-                <div className="flex items-center justify-between mb-6">
-                  <h3 className="font-medium">Supply Chain Efficiency Forecast</h3>
-                  <div className="text-xs bg-white/5 px-2 py-1 rounded text-muted-foreground">30 Days</div>
+                <div className="flex items-center justify-between mb-5">
+                  <h3 className="font-medium text-sm">Supply Chain Efficiency — 30 Day Forecast</h3>
+                  <div className="text-xs bg-teal-500/10 text-teal-400 px-2 py-1 rounded border border-teal-500/20">AI Predicted</div>
                 </div>
-                {/* Abstract visualization of a chart */}
-                <div className="h-48 w-full border-b border-l border-white/10 relative flex items-end justify-around pb-2 px-2">
-                  {[40, 60, 45, 80, 75, 90, 85, 100].map((h, i) => (
-                    <div key={i} className="w-[8%] rounded-t-sm bg-gradient-to-t from-teal-500/20 to-teal-500/80" style={{ height: `${h}%` }}></div>
+                <div className="h-44 border-b border-l border-white/10 relative flex items-end justify-around pb-2 px-2 gap-1">
+                  {[40, 55, 48, 72, 68, 85, 80, 95, 90, 100].map((h, i) => (
+                    <div key={i} className="flex-1 rounded-t-sm bg-gradient-to-t from-teal-500/30 to-teal-500/80" style={{ height: `${h}%` }} />
                   ))}
-                  <div className="absolute top-1/4 left-0 w-full border-t border-dashed border-white/10"></div>
-                  <div className="absolute top-1/2 left-0 w-full border-t border-dashed border-white/10"></div>
+                  <div className="absolute top-1/3 left-0 w-full border-t border-dashed border-white/10" />
+                  <div className="absolute top-2/3 left-0 w-full border-t border-dashed border-white/10" />
+                </div>
+                <div className="mt-4 grid grid-cols-3 gap-3">
+                  {[
+                    { label: "On-Time Deliveries", val: "96.2%", color: "text-teal-400" },
+                    { label: "Avg Processing Time", val: "2.4h", color: "text-white" },
+                    { label: "Cost per Order", val: "$12.80", color: "text-white" },
+                  ].map((m, i) => (
+                    <div key={i} className="p-2 rounded-lg bg-white/5 text-center">
+                      <div className={`text-sm font-bold ${m.color}`}>{m.val}</div>
+                      <div className="text-[10px] text-muted-foreground mt-0.5">{m.label}</div>
+                    </div>
+                  ))}
                 </div>
               </div>
-              
-              {/* Alert Feed */}
-              <div className="w-80 p-4 bg-[#0A0D14] flex flex-col gap-3">
-                <h3 className="text-sm font-medium text-muted-foreground mb-2 flex items-center gap-2">
-                  <Zap className="w-4 h-4 text-teal-400" /> AI Interventions
+              <div className="w-72 p-4 bg-[#0A0D14] flex flex-col gap-2.5">
+                <h3 className="text-xs font-semibold text-muted-foreground flex items-center gap-1.5 mb-1">
+                  <Zap className="w-3.5 h-3.5 text-teal-400" /> AI Interventions
                 </h3>
                 {[
-                  { title: "Low Stock: SK-102", action: "Auto-reordered 500 units based on predicted demand.", time: "10m ago" },
-                  { title: "Invoice Discrepancy", action: "Flagged INV-8992 for manual review. 15% variance.", time: "1h ago" },
-                  { title: "Route Optimization", action: "Rerouted 3 shipments avoiding storm path.", time: "3h ago" },
-                ].map((alert, i) => (
-                  <div key={i} className="p-3 rounded-lg border border-white/5 bg-white/[0.02]">
-                    <div className="text-sm font-medium text-white mb-1">{alert.title}</div>
-                    <div className="text-xs text-muted-foreground mb-2">{alert.action}</div>
-                    <div className="text-[10px] text-muted-foreground/50">{alert.time}</div>
+                  { title: "Low Stock: SKU-102", detail: "Auto-reordered 500 units — predicted demand spike next week.", time: "10m ago", type: "auto" },
+                  { title: "Invoice Discrepancy", detail: "INV-8992 flagged for review. 15% variance detected.", time: "1h ago", type: "alert" },
+                  { title: "Route Optimized", detail: "3 shipments rerouted — storm path avoided. ETA unchanged.", time: "3h ago", type: "auto" },
+                ].map((a, i) => (
+                  <div key={i} className={`p-3 rounded-xl border text-xs ${a.type === 'alert' ? 'border-amber-400/20 bg-amber-400/5' : 'border-white/5 bg-white/[0.02]'}`}>
+                    <div className="flex items-center justify-between mb-1">
+                      <div className="font-medium text-white">{a.title}</div>
+                      <span className={`text-[9px] px-1.5 py-0.5 rounded font-semibold ${a.type === 'alert' ? 'bg-amber-400/20 text-amber-400' : 'bg-teal-400/20 text-teal-400'}`}>
+                        {a.type === 'alert' ? 'Alert' : 'Auto'}
+                      </span>
+                    </div>
+                    <div className="text-muted-foreground leading-relaxed mb-1">{a.detail}</div>
+                    <div className="text-muted-foreground/40">{a.time}</div>
                   </div>
                 ))}
               </div>
             </div>
-           </MockWindow>
+          </MockWindow>
         </motion.div>
 
-        {/* ERP INTEGRATIONS */}
-        <div className="text-center mb-32">
-          <p className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-8">Seamlessly connects to</p>
-          <div className="flex flex-wrap justify-center items-center gap-6 md:gap-12 opacity-70">
+        {/* ── INTEGRATIONS ── */}
+        <div className="text-center mb-28">
+          <p className="text-xs font-semibold text-muted-foreground uppercase tracking-widest mb-6">Seamlessly connects to your existing ERP</p>
+          <div className="flex flex-wrap justify-center items-center gap-3 mb-5">
             {['SAP', 'Oracle NetSuite', 'Microsoft Dynamics 365', 'Odoo', 'ERPNext'].map(erp => (
-              <div key={erp} className="flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/5">
+              <div key={erp} className="flex items-center gap-2 px-5 py-2 rounded-full border border-white/10 bg-white/5 hover:border-teal-500/30 transition-colors">
                 <div className="w-2 h-2 rounded-full bg-teal-500" />
-                <span className="font-medium">{erp}</span>
+                <span className="text-sm font-medium">{erp}</span>
               </div>
             ))}
           </div>
+          <p className="text-sm text-muted-foreground">No migration. No disruption. AI sits on top of your existing system.</p>
         </div>
 
-        {/* ERP FEATURES GRID */}
-        <div className="grid md:grid-cols-3 gap-8 mb-24">
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="p-8 rounded-3xl bg-card border border-white/10 hover:border-teal-500/30 transition-colors">
-            <div className="w-12 h-12 rounded-xl bg-teal-500/10 flex items-center justify-center mb-6">
-              <PackageSearch className="w-6 h-6 text-teal-400" />
+        {/* ── SECTION 1: Operational Intelligence ── */}
+        <div className="grid md:grid-cols-2 gap-16 items-center mb-28">
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeLeft}>
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal-400/10 text-teal-400 text-xs font-semibold mb-5 border border-teal-400/20">
+              <PackageSearch className="w-3.5 h-3.5" /> Operational Intelligence
             </div>
-            <h3 className="text-xl font-bold mb-3">Operational Intelligence</h3>
-            <p className="text-muted-foreground text-sm">
-              Monitor inventory levels intelligently, track performance metrics across departments, and receive predictive alerts before bottlenecks occur.
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Full visibility into your operations — with AI alerts.</h2>
+            <p className="text-muted-foreground mb-7 text-lg leading-relaxed">
+              Instead of checking dashboards manually, AI monitors your ERP data continuously and surfaces what matters: low inventory before it's a problem, supplier delays before they affect delivery, and cost anomalies before they hit your bottom line.
             </p>
+            <div className="space-y-4">
+              {[
+                { icon: PackageSearch, label: "Inventory Monitoring", desc: "AI tracks stock levels, predicts demand spikes, and triggers reorders automatically." },
+                { icon: AlertTriangle, label: "Operational Alerts", desc: "Get notified of anomalies, bottlenecks, and process failures before they escalate." },
+                { icon: TrendingUp, label: "Performance Tracking", desc: "Live KPIs across departments — fulfillment rate, cost per order, processing time, and more." },
+              ].map((item, i) => (
+                <div key={i} className="flex items-start gap-3">
+                  <div className="w-8 h-8 rounded-lg bg-teal-400/10 flex items-center justify-center shrink-0 mt-0.5">
+                    <item.icon className="w-4 h-4 text-teal-400" />
+                  </div>
+                  <div>
+                    <div className="font-semibold text-sm text-white mb-0.5">{item.label}</div>
+                    <div className="text-xs text-muted-foreground leading-relaxed">{item.desc}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
           </motion.div>
-
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }} className="p-8 rounded-3xl bg-card border border-white/10 hover:border-teal-500/30 transition-colors">
-            <div className="w-12 h-12 rounded-xl bg-teal-500/10 flex items-center justify-center mb-6">
-              <Workflow className="w-6 h-6 text-teal-400" />
-            </div>
-            <h3 className="text-xl font-bold mb-3">Workflow Automation</h3>
-            <p className="text-muted-foreground text-sm">
-              Automate complex approval flows, trigger notifications based on custom rules, and let AI handle repetitive data entry and routing.
-            </p>
-          </motion.div>
-
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }} className="p-8 rounded-3xl bg-card border border-white/10 hover:border-teal-500/30 transition-colors">
-            <div className="w-12 h-12 rounded-xl bg-teal-500/10 flex items-center justify-center mb-6">
-              <BarChart3 className="w-6 h-6 text-teal-400" />
-            </div>
-            <h3 className="text-xl font-bold mb-3">Decision Support</h3>
-            <p className="text-muted-foreground text-sm">
-              Generate instant business reports, query your operational data using natural language, and make executive decisions with AI-backed confidence.
-            </p>
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeRight}>
+            <MockWindow title="Inventory & Operations Monitor">
+              <div className="p-5 bg-[#0A0D14] space-y-3">
+                <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3">Live Inventory Status</div>
+                {[
+                  { sku: "SKU-A201 · Laptop 15Pro", stock: 248, max: 500, status: "ok" },
+                  { sku: "SKU-B102 · USB-C Hub", stock: 23, max: 200, status: "low" },
+                  { sku: "SKU-C047 · Monitor 27\"", stock: 12, max: 150, status: "critical" },
+                  { sku: "SKU-D390 · Keyboard TKL", stock: 190, max: 300, status: "ok" },
+                ].map((item, i) => (
+                  <div key={i} className="p-3 rounded-xl bg-white/5 border border-white/5 text-xs">
+                    <div className="flex justify-between mb-2">
+                      <span className="text-white font-medium">{item.sku}</span>
+                      <span className={`font-semibold ${item.status === 'ok' ? 'text-teal-400' : item.status === 'low' ? 'text-amber-400' : 'text-red-400'}`}>
+                        {item.stock} units
+                      </span>
+                    </div>
+                    <div className="w-full bg-white/10 rounded-full h-1.5">
+                      <div
+                        className={`h-1.5 rounded-full ${item.status === 'ok' ? 'bg-teal-400' : item.status === 'low' ? 'bg-amber-400' : 'bg-red-400'}`}
+                        style={{ width: `${(item.stock / item.max) * 100}%` }}
+                      />
+                    </div>
+                    {item.status !== 'ok' && (
+                      <div className={`mt-1 text-[10px] ${item.status === 'low' ? 'text-amber-400' : 'text-red-400'}`}>
+                        {item.status === 'critical' ? '⚡ AI auto-reorder triggered' : '⚠ Below threshold — review recommended'}
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </MockWindow>
           </motion.div>
         </div>
+
+        {/* ── SECTION 2: Workflow Automation ── */}
+        <div className="grid md:grid-cols-2 gap-16 items-center mb-28">
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeLeft} className="order-2 md:order-1">
+            <MockWindow title="Workflow Automation Engine">
+              <div className="p-5 bg-[#0A0D14] space-y-3">
+                <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3">Active Workflows</div>
+                {[
+                  { name: "PO Approval Flow", steps: "Request → Manager → Finance → Auto-approve <$500", runs: "43 today", status: "running" },
+                  { name: "Invoice Matching", steps: "Invoice → PO match → Discrepancy flag → Review queue", runs: "112 today", status: "running" },
+                  { name: "Supplier Alert", steps: "Delay detected → Notify procurement → Alt supplier search", runs: "2 today", status: "alert" },
+                ].map((wf, i) => (
+                  <div key={i} className={`p-4 rounded-xl border text-xs space-y-2 ${wf.status === 'alert' ? 'border-amber-400/20 bg-amber-400/5' : 'border-white/5 bg-white/[0.02]'}`}>
+                    <div className="flex items-center justify-between">
+                      <span className="font-semibold text-sm text-white">{wf.name}</span>
+                      <span className={`text-[9px] px-1.5 py-0.5 rounded font-semibold ${wf.status === 'alert' ? 'bg-amber-400/20 text-amber-400' : 'bg-teal-400/20 text-teal-400'}`}>
+                        {wf.status === 'alert' ? 'Alert' : 'Running'}
+                      </span>
+                    </div>
+                    <div className="text-muted-foreground/70 leading-relaxed">{wf.steps}</div>
+                    <div className="text-muted-foreground/50">{wf.runs}</div>
+                  </div>
+                ))}
+                <div className="mt-1 p-3 rounded-xl bg-teal-400/5 border border-teal-400/20 text-xs flex items-center gap-2">
+                  <Zap className="w-3.5 h-3.5 text-teal-400 shrink-0" />
+                  <span className="text-teal-400 font-medium">AI saved 4.2 hours of manual work today</span>
+                </div>
+              </div>
+            </MockWindow>
+          </motion.div>
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeRight} className="order-1 md:order-2">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal-400/10 text-teal-400 text-xs font-semibold mb-5 border border-teal-400/20">
+              <Workflow className="w-3.5 h-3.5" /> Workflow Automation
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Automate complex processes without custom code.</h2>
+            <p className="text-muted-foreground mb-7 text-lg leading-relaxed">
+              From purchase order approvals to invoice matching and supplier notifications — AI handles the routing, triggers, and escalations that eat up your operations team's time. Complex multi-step flows run automatically, with humans in the loop only when it matters.
+            </p>
+            <div className="space-y-4">
+              {[
+                { icon: CheckCircle2, label: "Approval Flows", desc: "Multi-step approval routing with smart escalation and conditional auto-approval." },
+                { icon: Zap, label: "Task Automation", desc: "Trigger tasks, update records, and notify teams automatically when conditions are met." },
+                { icon: Settings2, label: "Process Monitoring", desc: "AI detects when a workflow is stalled or behaving unexpectedly and alerts your team." },
+              ].map((item, i) => (
+                <div key={i} className="flex items-start gap-3">
+                  <div className="w-8 h-8 rounded-lg bg-teal-400/10 flex items-center justify-center shrink-0 mt-0.5">
+                    <item.icon className="w-4 h-4 text-teal-400" />
+                  </div>
+                  <div>
+                    <div className="font-semibold text-sm text-white mb-0.5">{item.label}</div>
+                    <div className="text-xs text-muted-foreground leading-relaxed">{item.desc}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+
+        {/* ── SECTION 3: Decision Support ── */}
+        <div className="grid md:grid-cols-2 gap-16 items-center mb-28">
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeLeft}>
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal-400/10 text-teal-400 text-xs font-semibold mb-5 border border-teal-400/20">
+              <BarChart3 className="w-3.5 h-3.5" /> Decision Support
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Make faster decisions with AI-backed insights.</h2>
+            <p className="text-muted-foreground mb-7 text-lg leading-relaxed">
+              Leadership shouldn't wait for weekly reports to understand how the business is running. AI generates plain-English summaries, surfaces trends across departments, and answers operational questions on demand.
+            </p>
+            <div className="space-y-4">
+              {[
+                { icon: LineChart, label: "Business Performance Reports", desc: "AI-generated reports across finance, operations, and supply chain — daily or on demand." },
+                { icon: BrainCircuit, label: "Natural Language Queries", desc: "Ask your ERP a question in plain English: 'Which suppliers had delays last quarter?'" },
+                { icon: AlertTriangle, label: "Proactive Risk Alerts", desc: "AI identifies emerging risks — budget overruns, supplier issues, compliance gaps — before they escalate." },
+              ].map((item, i) => (
+                <div key={i} className="flex items-start gap-3">
+                  <div className="w-8 h-8 rounded-lg bg-teal-400/10 flex items-center justify-center shrink-0 mt-0.5">
+                    <item.icon className="w-4 h-4 text-teal-400" />
+                  </div>
+                  <div>
+                    <div className="font-semibold text-sm text-white mb-0.5">{item.label}</div>
+                    <div className="text-xs text-muted-foreground leading-relaxed">{item.desc}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeRight}>
+            <MockWindow title="Executive Intelligence Dashboard">
+              <div className="p-5 bg-[#0A0D14] space-y-3">
+                <div className="p-3 rounded-xl bg-teal-400/5 border border-teal-400/20 text-xs mb-1">
+                  <div className="font-semibold text-teal-400 mb-1.5 flex items-center gap-1.5">
+                    <BrainCircuit className="w-3.5 h-3.5" /> AI Weekly Summary
+                  </div>
+                  <div className="text-muted-foreground leading-relaxed space-y-1">
+                    <div>• Fulfillment rate improved 2.1% vs last week</div>
+                    <div>• 3 supplier delays flagged — alt sources identified</div>
+                    <div className="text-amber-400">• Q3 procurement budget 78% utilized (6 weeks left)</div>
+                  </div>
+                </div>
+                <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">Department KPIs</div>
+                {[
+                  { dept: "Finance", metric: "Invoice accuracy", val: "99.2%", up: true },
+                  { dept: "Operations", metric: "On-time fulfillment", val: "96.8%", up: true },
+                  { dept: "Procurement", metric: "PO cycle time", val: "2.1 days", up: false },
+                  { dept: "Warehouse", metric: "Pick accuracy", val: "99.7%", up: true },
+                ].map((kpi, i) => (
+                  <div key={i} className="flex items-center justify-between p-3 rounded-xl bg-white/5 text-xs">
+                    <div>
+                      <span className="font-medium text-white">{kpi.dept}</span>
+                      <span className="text-muted-foreground ml-2">{kpi.metric}</span>
+                    </div>
+                    <div className={`flex items-center gap-1 font-bold ${kpi.up ? 'text-teal-400' : 'text-amber-400'}`}>
+                      <TrendingUp className={`w-3 h-3 ${kpi.up ? '' : 'rotate-180'}`} /> {kpi.val}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </MockWindow>
+          </motion.div>
+        </div>
+
+        {/* ── BENEFITS ── */}
+        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}
+          className="rounded-3xl border border-teal-500/10 bg-gradient-to-br from-[#0d1117] to-[#06080c] p-10 md:p-14"
+        >
+          <div className="text-center mb-10">
+            <h2 className="text-3xl md:text-4xl font-bold mb-3">Operate your business with intelligence.</h2>
+            <p className="text-muted-foreground max-w-lg mx-auto text-sm">No ERP replacement. No disruption. AI intelligence added on top of what you already run.</p>
+          </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              { icon: BarChart3, stat: "Real-time", label: "Operational visibility", sub: "Know what's happening across all departments instantly" },
+              { icon: Clock, stat: "4+ hrs", label: "Saved per day", sub: "Manual workflows replaced with smart automation" },
+              { icon: ShieldCheck, stat: "Proactive", label: "Risk management", sub: "Issues flagged before they become expensive problems" },
+              { icon: Zap, stat: "Instant", label: "Decision support", sub: "AI-generated insights when leadership needs answers" },
+            ].map((item, i) => (
+              <div key={i} className="text-center p-6 rounded-2xl bg-white/[0.02] border border-white/5">
+                <div className="w-10 h-10 rounded-xl bg-teal-500/10 flex items-center justify-center mx-auto mb-4">
+                  <item.icon className="w-5 h-5 text-teal-400" />
+                </div>
+                <div className="text-2xl font-bold text-teal-400 mb-1">{item.stat}</div>
+                <div className="text-sm font-semibold text-white mb-1">{item.label}</div>
+                <div className="text-xs text-muted-foreground leading-relaxed">{item.sub}</div>
+              </div>
+            ))}
+          </div>
+        </motion.div>
 
       </div>
     </section>
