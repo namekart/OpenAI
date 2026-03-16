@@ -1,4 +1,4 @@
-import { Link } from "wouter";
+import { Link, useLocation } from "wouter";
 import { BrainCircuit } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
+  const [location] = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -15,19 +16,14 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
+  const isActive = (path: string) => location === path;
 
   return (
-    <header 
+    <header
       className={cn(
         "fixed top-0 w-full z-50 transition-all duration-300 border-b",
-        scrolled 
-          ? "bg-background/80 backdrop-blur-xl border-white/10 shadow-lg" 
+        scrolled
+          ? "bg-background/80 backdrop-blur-xl border-white/10 shadow-lg"
           : "bg-transparent border-transparent"
       )}
     >
@@ -42,20 +38,38 @@ export function Navbar() {
         </Link>
 
         <nav className="hidden md:flex items-center gap-8">
-          <button onClick={() => scrollToSection('crm-intel')} className="text-sm font-medium text-muted-foreground hover:text-white transition-colors">
+          <Link
+            href="/crm"
+            className={cn(
+              "text-sm font-medium transition-colors",
+              isActive("/crm") ? "text-white" : "text-muted-foreground hover:text-white"
+            )}
+          >
             CRM Intelligence
-          </button>
-          <button onClick={() => scrollToSection('erp-intel')} className="text-sm font-medium text-muted-foreground hover:text-white transition-colors">
+          </Link>
+          <Link
+            href="/erp"
+            className={cn(
+              "text-sm font-medium transition-colors",
+              isActive("/erp") ? "text-teal-400" : "text-muted-foreground hover:text-white"
+            )}
+          >
             ERP Intelligence
-          </button>
-          <Link href="/" className="text-sm font-medium text-muted-foreground hover:text-white transition-colors">
+          </Link>
+          <Link
+            href="/"
+            className={cn(
+              "text-sm font-medium transition-colors",
+              isActive("/") && location === "/" ? "text-white" : "text-muted-foreground hover:text-white"
+            )}
+          >
             Pricing
           </Link>
         </nav>
 
         <div className="flex items-center gap-4">
-          <Button variant="ghost" className="hidden sm:inline-flex" onClick={() => {}}>Sign In</Button>
-          <Button onClick={() => {}}>Book Demo</Button>
+          <Button variant="ghost" className="hidden sm:inline-flex">Sign In</Button>
+          <Button>Book Demo</Button>
         </div>
       </div>
     </header>
