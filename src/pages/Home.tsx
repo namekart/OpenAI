@@ -3,7 +3,6 @@ import { Hero } from "@/components/sections/Hero";
 import { Integrations } from "@/components/sections/Integrations";
 import { HowItWorks } from "@/components/sections/HowItWorks";
 import { Features } from "@/components/sections/Features";
-import { ProductShowcase } from "@/components/sections/ProductShowcase";
 import { VoiceHighlight } from "@/components/sections/VoiceHighlight";
 import { Benefits } from "@/components/sections/Benefits";
 import { Industries } from "@/components/sections/Industries";
@@ -21,8 +20,7 @@ export default function Home() {
         <Integrations />
         <HowItWorks />
         <Features />
-        <ProductShowcase />
-        <VoiceHighlight />
+<VoiceHighlight />
         <Benefits />
         <Industries />
         <Testimonials />

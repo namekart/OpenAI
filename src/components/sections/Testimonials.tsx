@@ -27,11 +27,11 @@ export function Testimonials() {
   ];
 
   return (
-    <section className="py-24 bg-background relative" id="company">
+    <section className="py-12 bg-background relative" id="company">
       <div className="absolute top-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
+        <div className="text-center mb-8">
           <motion.p
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -52,7 +52,7 @@ export function Testimonials() {
           </motion.h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
           {reviews.map((r, i) => (
             <motion.div
               key={i}
@@ -60,20 +60,20 @@ export function Testimonials() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="bg-white/[0.03] border border-white/[0.08] p-8 rounded-2xl relative flex flex-col"
+              className="bg-white/[0.03] border border-white/[0.08] p-5 rounded-2xl relative flex flex-col"
             >
               {/* Company Logo Badge */}
-              <div className="mb-6">
+              <div className="mb-4">
                 <div className="inline-flex items-center justify-center px-4 py-2 rounded-lg bg-white/[0.06] border border-white/10">
                   <span className="text-sm font-bold text-white/50 tracking-widest">{r.company}</span>
                 </div>
               </div>
 
-              <div className="flex gap-1 mb-5">
+              <div className="flex gap-1 mb-3">
                 {[1, 2, 3, 4, 5].map((s) => <Star key={s} className="w-4 h-4 fill-primary text-primary" />)}
               </div>
               <p className="text-white/90 text-sm leading-relaxed flex-1">"{r.quote}"</p>
-              <div className="flex items-center gap-4 mt-8">
+              <div className="flex items-center gap-4 mt-4">
                 <img src={r.image} alt={r.author} className="w-10 h-10 rounded-full object-cover grayscale opacity-80" />
                 <div>
                   <h4 className="text-sm font-bold text-white">{r.author}</h4>
@@ -85,7 +85,7 @@ export function Testimonials() {
         </div>
 
         {/* Trust Metrics */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 py-10 border-y border-white/[0.06]">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 py-6 border-y border-white/[0.06]">
           {[
             { val: "500+", label: "Businesses Connected" },
             { val: "50M+", label: "AI Interactions" },

@@ -12,9 +12,9 @@ export function Industries() {
   ];
 
   return (
-    <section className="py-24 border-t border-white/[0.05] bg-[#080C16]">
+    <section className="py-12 border-t border-white/[0.05] bg-[#080C16]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-14">
+        <div className="text-center mb-8">
           <motion.p
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}

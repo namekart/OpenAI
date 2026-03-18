@@ -140,7 +140,7 @@ function PricingCard({ plan, index }: { plan: Plan; index: number }) {
           : "0 8px 32px rgba(0,0,0,0.4)",
       }}
       transition={{ duration: 0.25, ease: "easeOut" }}
-      className="relative flex flex-col rounded-2xl border bg-[#111218] p-8 overflow-hidden cursor-pointer select-none"
+      className="relative flex flex-col rounded-2xl border bg-[#111218] p-6 overflow-hidden cursor-pointer select-none"
       style={{ borderColor: "rgba(255,255,255,0.08)" }}
     >
       {/* Mouse-tracking spotlight glow */}
@@ -183,7 +183,7 @@ function PricingCard({ plan, index }: { plan: Plan; index: number }) {
       {/* Content */}
       <div className="relative z-10 flex flex-col flex-1">
         {/* Header */}
-        <div className="flex items-center justify-between mb-6">
+        <div className="flex items-center justify-between mb-4">
           <h3 className="text-base font-semibold text-white">{plan.title}</h3>
           {plan.badge && (
             <motion.span
@@ -197,10 +197,10 @@ function PricingCard({ plan, index }: { plan: Plan; index: number }) {
         </div>
 
         {/* Price */}
-        <div className="mb-4 flex items-baseline gap-1">
+        <div className="mb-3 flex items-baseline gap-1">
           <motion.span
             animate={{ color: isActive ? "#ffffff" : "#ffffff" }}
-            className="text-5xl font-bold tracking-tight text-white"
+            className="text-4xl font-bold tracking-tight text-white"
           >
             {plan.price}
           </motion.span>
@@ -208,7 +208,7 @@ function PricingCard({ plan, index }: { plan: Plan; index: number }) {
         </div>
 
         {/* Description */}
-        <p className="text-sm text-[#94a3b8] leading-relaxed mb-6 min-h-[40px]">
+        <p className="text-sm text-[#94a3b8] leading-relaxed mb-4 min-h-[40px]">
           {plan.description}
         </p>
 
@@ -230,13 +230,13 @@ function PricingCard({ plan, index }: { plan: Plan; index: number }) {
             color: "#ffffff",
           }}
           transition={{ duration: 0.22 }}
-          className="w-full h-11 rounded-lg text-sm font-semibold mb-8 border"
+          className="w-full h-10 rounded-lg text-sm font-semibold mb-5 border"
         >
           {plan.ctaLabel}
         </motion.button>
 
         {/* Divider */}
-        <div className="flex items-center gap-3 mb-6">
+        <div className="flex items-center gap-3 mb-4">
           <motion.div
             animate={{ backgroundColor: isActive ? "rgba(249,115,22,0.25)" : "rgba(255,255,255,0.07)" }}
             transition={{ duration: 0.3 }}
@@ -278,7 +278,7 @@ const PARTICLES = Array.from({ length: 45 }, (_, i) => {
 
 export function PricingSection() {
   return (
-    <section id="pricing" className="relative py-28 px-4 sm:px-6 lg:px-8 overflow-hidden">
+    <section id="pricing" className="relative py-14 px-4 sm:px-6 lg:px-8 overflow-hidden">
       {/* Background particles */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         {PARTICLES.map((p, i) => (
@@ -303,7 +303,7 @@ export function PricingSection() {
 
       <div className="max-w-6xl mx-auto relative z-10">
         {/* Heading */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-10">
           <motion.h2
             initial="hidden"
             whileInView="visible"

@@ -3,7 +3,7 @@ import { ArrowRight, Sparkles, Database, Workflow, PhoneCall, LayoutDashboard, C
 
 export function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center pt-24 pb-20 overflow-hidden">
+    <section className="relative min-h-[80vh] flex items-center justify-center pt-16 pb-12 overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0 bg-grid-pattern opacity-[0.2]" />
       <div className="absolute inset-0 z-0">
@@ -17,7 +17,7 @@ export function Hero() {
       {/* Central radial gradient for extra focus */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/20 rounded-full blur-[120px] opacity-50 pointer-events-none" />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-center gap-16">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-center gap-10">
         
         {/* Text Content */}
         <div className="flex-1 text-center lg:text-left mt-10 lg:mt-0">
@@ -25,7 +25,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium mb-6"
+            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium mb-4"
           >
             <Sparkles className="w-4 h-4" />
             <span>AI Intelligence Layer for Modern Business</span>
@@ -35,7 +35,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white mb-6 leading-[1.1]"
+            className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white mb-4 leading-[1.1]"
           >
             Add an AI Brain to Your <span className="text-gradient-primary">CRM and ERP</span>
           </motion.h1>
@@ -44,7 +44,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-lg md:text-xl text-muted-foreground mb-10 max-w-2xl mx-auto lg:mx-0 leading-relaxed"
+            className="text-base md:text-lg text-muted-foreground mb-6 max-w-2xl mx-auto lg:mx-0 leading-relaxed"
           >
             OpenBusiness.ai connects to your existing systems and adds intelligent automation, real-time insights, and voice agents — <span className="text-white font-medium">without migration, without disruption.</span>
           </motion.p>
@@ -55,10 +55,10 @@ export function Hero() {
             transition={{ duration: 0.5, delay: 0.3 }}
             className="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start"
           >
-            <button className="w-full sm:w-auto px-8 py-4 rounded-full bg-primary hover:bg-primary/90 text-white font-semibold text-lg shadow-[0_0_20px_rgba(59,130,246,0.3)] hover:shadow-[0_0_30px_rgba(59,130,246,0.5)] transition-all duration-300">
+            <button className="w-full sm:w-auto px-6 py-3 rounded-full bg-primary hover:bg-primary/90 text-white font-semibold text-base shadow-[0_0_20px_rgba(59,130,246,0.3)] hover:shadow-[0_0_30px_rgba(59,130,246,0.5)] transition-all duration-300">
               Book a Demo
             </button>
-            <button className="w-full sm:w-auto px-8 py-4 rounded-full bg-white/5 hover:bg-white/10 text-white border border-white/10 font-semibold text-lg backdrop-blur-md flex items-center justify-center gap-2 transition-all duration-300 group">
+            <button className="w-full sm:w-auto px-6 py-3 rounded-full bg-white/5 hover:bg-white/10 text-white border border-white/10 font-semibold text-base backdrop-blur-md flex items-center justify-center gap-2 transition-all duration-300 group">
               See How It Works
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </button>
@@ -84,7 +84,7 @@ export function Hero() {
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.7, delay: 0.4 }}
-          className="flex-1 w-full relative h-[500px] hidden md:block"
+          className="flex-1 w-full relative h-[400px] hidden md:block"
         >
           {/* Main Dashboard Mockup */}
           <div className="absolute inset-0 z-20 glass-panel rounded-2xl overflow-hidden border border-white/10 shadow-[0_0_50px_rgba(0,0,0,0.5)] flex flex-col bg-[#0F1423]">
@@ -112,7 +112,7 @@ export function Hero() {
               </div>
               
               {/* Main Content Area */}
-              <div className="flex-1 p-5 flex flex-col gap-4 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] bg-opacity-[0.02]">
+              <div className="flex-1 p-5 flex flex-col gap-4">
                 {/* Stats Bar */}
                 <div className="grid grid-cols-3 gap-4">
                   {[

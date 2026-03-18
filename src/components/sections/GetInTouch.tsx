@@ -38,7 +38,7 @@ export function GetInTouch() {
   };
 
   return (
-    <section id="contact" className="py-24 relative overflow-hidden">
+    <section id="contact" className="py-12 relative overflow-hidden">
       {/* Background glow */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-primary/10 blur-[120px]" />
@@ -50,12 +50,12 @@ export function GetInTouch() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-12"
+          className="text-center mb-8"
         >
           <span className="inline-block text-xs font-semibold tracking-widest uppercase text-primary mb-4 px-3 py-1 rounded-full border border-primary/20 bg-primary/5">
             Contact
           </span>
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 tracking-tight">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-3 tracking-tight">
             Get in <span className="text-gradient-primary">Touch</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-xl mx-auto">
@@ -68,7 +68,7 @@ export function GetInTouch() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.1 }}
-          className="glass-card rounded-2xl p-8 md:p-10"
+          className="glass-card rounded-2xl p-6 md:p-8"
         >
           {status === "success" ? (
             <div className="flex flex-col items-center justify-center py-12 gap-4 text-center">

@@ -12,20 +12,20 @@ export function ProductShowcase() {
   ];
 
   return (
-    <section className="py-24 relative overflow-hidden" id="product">
+    <section className="py-12 relative overflow-hidden" id="product">
       {/* Background glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-3xl h-[400px] bg-primary/10 blur-[100px] rounded-full pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">The AI Control Center for Your Business</h2>
+        <div className="text-center mb-8">
+          <h2 className="text-2xl md:text-4xl font-bold text-white mb-3">The AI Control Center for Your Business</h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             A unified interface that sits on top of your fragmented tools, turning raw data into proactive intelligence.
           </p>
         </div>
 
         {/* Tabs */}
-        <div className="flex flex-wrap justify-center gap-2 mb-10">
+        <div className="flex flex-wrap justify-center gap-2 mb-6">
           {tabs.map((tab) => (
             <button
               key={tab.id}
@@ -43,7 +43,7 @@ export function ProductShowcase() {
         </div>
 
         {/* Mockup Container */}
-        <div className="relative mx-auto max-w-5xl rounded-2xl bg-[#0F1423] border border-white/10 shadow-2xl overflow-hidden aspect-[16/9] sm:aspect-auto sm:h-[600px] flex flex-col mb-16">
+        <div className="relative mx-auto max-w-5xl rounded-2xl bg-[#0F1423] border border-white/10 shadow-2xl overflow-hidden aspect-[16/9] sm:aspect-auto sm:h-[460px] flex flex-col mb-8">
           {/* Mac-style Window Header */}
           <div className="h-12 bg-white/5 border-b border-white/10 flex items-center px-4 gap-2">
             <div className="w-3 h-3 rounded-full bg-red-500/80" />
@@ -55,7 +55,7 @@ export function ProductShowcase() {
           </div>
 
           {/* Content Area */}
-          <div className="flex-1 p-6 relative overflow-hidden bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] bg-opacity-[0.03]">
+          <div className="flex-1 p-6 relative overflow-hidden">
             <AnimatePresence mode="wait">
               {activeTab === 0 && (
                 <motion.div
@@ -198,8 +198,8 @@ export function ProductShowcase() {
         </div>
 
         {/* Product Gallery Grid */}
-        <div className="mt-16">
-          <h3 className="text-xl font-semibold text-white text-center mb-8 opacity-70">More from the platform</h3>
+        <div className="mt-6">
+          <h3 className="text-base font-semibold text-white text-center mb-4 opacity-70">More from the platform</h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {[
               { title: "AI Pipeline View", tag: "CRM", bgTag: "bg-blue-500/20", textTag: "text-blue-400", borderTag: "border-blue-500/20", gradient: "from-blue-500/20 to-blue-500/60" },

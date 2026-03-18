@@ -27,9 +27,9 @@ export function Benefits() {
   ];
 
   return (
-    <section className="py-24 bg-background">
+    <section className="py-12 bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
+        <div className="text-center mb-8">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -57,14 +57,14 @@ export function Benefits() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="group bg-white/[0.02] border border-white/[0.06] p-8 rounded-2xl hover:bg-white/[0.04] hover:border-white/[0.12] transition-all duration-300 flex flex-col"
+              className="group bg-white/[0.02] border border-white/[0.06] p-5 rounded-2xl hover:bg-white/[0.04] hover:border-white/[0.12] transition-all duration-300 flex flex-col"
             >
-              <div className={`w-14 h-14 rounded-2xl border flex items-center justify-center mb-6 ${b.iconBg}`}>
+              <div className={`w-10 h-10 rounded-2xl border flex items-center justify-center mb-4 ${b.iconBg}`}>
                 {b.icon}
               </div>
-              <h3 className="text-xl font-bold text-white mb-3">{b.title}</h3>
+              <h3 className="text-lg font-bold text-white mb-2">{b.title}</h3>
               <p className="text-sm text-muted-foreground leading-relaxed flex-1">{b.desc}</p>
-              <div className="mt-6 flex items-center gap-1.5 text-primary text-sm font-medium group-hover:gap-2.5 transition-all">
+              <div className="mt-4 flex items-center gap-1.5 text-primary text-sm font-medium group-hover:gap-2.5 transition-all">
                 <span>{b.link}</span>
                 <ArrowRight className="w-4 h-4" />
               </div>

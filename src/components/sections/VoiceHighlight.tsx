@@ -13,12 +13,12 @@ export function VoiceHighlight() {
   const waveHeights = [4,8,12,18,24,16,10,22,14,8,18,26,12,6,20,28,10,16,8,24,14,20,6,18,12,22,8,16,28,10];
 
   return (
-    <section className="py-24 relative overflow-hidden border-y border-white/[0.05]" id="voice">
+    <section className="py-12 relative overflow-hidden border-y border-white/[0.05]" id="voice">
       {/* Subtle background gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-indigo-950/30 via-background to-background pointer-events-none" />
       <div className="absolute top-1/2 left-0 -translate-y-1/2 w-96 h-96 bg-indigo-500/10 blur-[120px] rounded-full pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col lg:flex-row items-center gap-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col lg:flex-row items-center gap-10">
 
         {/* Left: Text */}
         <div className="flex-1">
@@ -26,7 +26,7 @@ export function VoiceHighlight() {
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-sm font-medium mb-6"
+            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-sm font-medium mb-4"
           >
             <Mic className="w-4 h-4" />
             <span>AI Voice Agents — scalable, multilingual outreach</span>
@@ -36,7 +36,7 @@ export function VoiceHighlight() {
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="text-3xl md:text-5xl font-bold text-white mb-6 leading-tight"
+            className="text-2xl md:text-4xl font-bold text-white mb-4 leading-tight"
           >
             Speak to Your Customers <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400">at Scale</span>
           </motion.h2>
@@ -46,12 +46,12 @@ export function VoiceHighlight() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-lg text-muted-foreground mb-8 leading-relaxed"
+            className="text-base text-muted-foreground mb-5 leading-relaxed"
           >
             Deploy AI voice agents that handle outbound calls, reminders, multilingual conversations, and feedback collection — with real-time transcription and automatic CRM sync.
           </motion.p>
 
-          <ul className="space-y-3 mb-8">
+          <ul className="space-y-2 mb-5">
             {features.map((feature, i) => (
               <motion.li
                 key={i}

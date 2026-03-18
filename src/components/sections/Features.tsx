@@ -120,9 +120,9 @@ export function Features() {
   ];
 
   return (
-    <section className="py-24 bg-background" id="solutions">
+    <section className="py-12 bg-background" id="solutions">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-14">
+        <div className="text-center mb-8">
           <motion.p
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -157,16 +157,16 @@ export function Features() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className={`group relative p-8 rounded-2xl bg-white/[0.02] border border-white/[0.05] transition-all duration-300 ${pillar.borderColor} ${pillar.shadowColor} flex flex-col`}
+              className={`group relative p-5 rounded-2xl bg-white/[0.02] border border-white/[0.05] transition-all duration-300 ${pillar.borderColor} ${pillar.shadowColor} flex flex-col`}
             >
               <div className={`absolute top-0 left-0 w-full h-32 bg-gradient-to-b ${pillar.color} opacity-50 pointer-events-none transition-opacity duration-300 group-hover:opacity-100`} />
               
               <div className="relative z-10 flex-1 flex flex-col">
-                <div className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center mb-6">
+                <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center mb-4">
                   {pillar.icon}
                 </div>
-                <h3 className="text-xl font-bold text-white mb-3">{pillar.title}</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed mb-6">
+                <h3 className="text-lg font-bold text-white mb-2">{pillar.title}</h3>
+                <p className="text-muted-foreground text-sm leading-relaxed mb-4">
                   {pillar.desc}
                 </p>
                 <div className="mt-auto">
