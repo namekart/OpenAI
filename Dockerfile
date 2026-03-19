@@ -3,6 +3,9 @@ FROM node:20-alpine AS builder
 
 WORKDIR /app
 
+# Force dev deps to be installed regardless of NODE_ENV
+ENV NODE_ENV=development
+
 COPY package.json package-lock.json ./
 RUN npm ci
 
