@@ -4,9 +4,9 @@ export function Footer() {
   return (
     <footer className="bg-[#050811] border-t border-white/[0.05] pt-16 pb-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 lg:gap-8 mb-16">
-          
-          <div className="lg:col-span-2">
+        <div className="flex flex-col md:flex-row items-start md:items-center gap-10 mb-16">
+
+          <div>
             <div className="flex items-center gap-2 mb-4">
               <div className="w-6 h-6 rounded-md bg-gradient-to-br from-primary to-accent flex items-center justify-center">
                 <BrainCircuit className="w-4 h-4 text-white" />
@@ -31,36 +31,21 @@ export function Footer() {
             </div>
           </div>
 
-          <div>
-            <h4 className="font-semibold text-white mb-4">Product</h4>
-            <ul className="space-y-3">
-              <li><a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">CRM Intelligence</a></li>
-              <li><a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">ERP Intelligence</a></li>
-              <li><a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">Voice Agents</a></li>
-              <li><a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">Integrations</a></li>
-              <li><a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">Pricing</a></li>
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="font-semibold text-white mb-4">Solutions</h4>
-            <ul className="space-y-3">
-              <li><a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">For Sales Teams</a></li>
-              <li><a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">For Operations</a></li>
-              <li><a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">For Customer Support</a></li>
-              <li><a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">For Founders</a></li>
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="font-semibold text-white mb-4">Company</h4>
-            <ul className="space-y-3">
-              <li><a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">About Us</a></li>
-              <li><a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">Careers</a></li>
-              <li><a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">Blog</a></li>
-              <li><a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">Contact</a></li>
-              <li><a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">Security</a></li>
-            </ul>
+          <div className="flex gap-8 mx-auto">
+            {[
+              { label: "CRM Intelligence", href: "/crm" },
+              { label: "ERP Intelligence", href: "/erp" },
+              { label: "Voice Agent", href: "/voice-agent" },
+              { label: "Pricing", href: "/pricing" },
+            ].map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                className="text-sm font-semibold text-muted-foreground hover:text-primary transition-all duration-200 hover:scale-105 hover:tracking-wide"
+              >
+                {link.label}
+              </a>
+            ))}
           </div>
 
         </div>
@@ -70,8 +55,8 @@ export function Footer() {
             © {new Date().getFullYear()} OpenBusiness.ai. All rights reserved.
           </p>
           <div className="flex gap-6">
-            <a href="#" className="text-sm text-muted-foreground hover:text-white transition-colors">Privacy Policy</a>
-            <a href="#" className="text-sm text-muted-foreground hover:text-white transition-colors">Terms of Service</a>
+            <a href="/privacy-policy" className="text-sm text-muted-foreground hover:text-white transition-colors">Privacy Policy</a>
+            <a href="/terms-of-service" className="text-sm text-muted-foreground hover:text-white transition-colors">Terms of Service</a>
           </div>
         </div>
       </div>

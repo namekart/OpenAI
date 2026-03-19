@@ -33,9 +33,9 @@ export function CRMProduct() {
               Keep your existing CRM. Add AI intelligence on top. Surface insights, draft emails, detect at-risk deals, and automate follow-ups — without changing your workflow.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Button size="lg" className="group w-full sm:w-auto">
+              <a href="/book-demo" className="group inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 rounded-full bg-primary hover:bg-primary/90 text-white font-semibold text-sm shadow-[0_0_20px_rgba(59,130,246,0.3)] transition-all duration-300">
                 Book Demo <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </Button>
+              </a>
               <Button size="lg" variant="outline" className="w-full sm:w-auto">Connect Your CRM</Button>
             </div>
           </motion.div>

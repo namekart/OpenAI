@@ -2,7 +2,8 @@
   "permissions": {
     "allow": [
       "Bash(npm install:*)",
-      "Bash(dir \"E:\\\\namekart\\\\Open_Bussiness\\\\OpenBussiness\\\\src\\\\components\\\\sections\"\")"
+      "Bash(dir \"E:\\\\namekart\\\\Open_Bussiness\\\\OpenBussiness\\\\src\\\\components\\\\sections\"\")",
+      "Bash(npx tsc:*)"
     ]
   }
 }

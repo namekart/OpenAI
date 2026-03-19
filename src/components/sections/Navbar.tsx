@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "wouter";
 import { motion, AnimatePresence } from "framer-motion";
-import { BrainCircuit, Menu, X, ChevronDown, Sparkles, Activity } from "lucide-react";
+import { BrainCircuit, Menu, X, ChevronDown, Sparkles, Activity, Mic } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export function Navbar() {
@@ -10,6 +10,7 @@ export function Navbar() {
   const [productsOpen, setProductsOpen] = useState(false);
   const [location] = useLocation();
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const hoverTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -30,11 +31,7 @@ export function Navbar() {
     return () => document.removeEventListener("mousedown", handler);
   }, []);
 
-  const anchorLinks = [
-    { name: "Integrations", href: "/#integrations" },
-    { name: "Solutions", href: "/#solutions" },
-    { name: "Company", href: "/#company" },
-  ];
+  const anchorLinks: { name: string; href: string }[] = [];
 
   const productLinks = [
     {
@@ -52,6 +49,14 @@ export function Navbar() {
       desc: "Operational AI for your ERP",
       color: "text-teal-400",
       bg: "bg-teal-400/10",
+    },
+    {
+      name: "Voice Agent",
+      href: "/voice-agent",
+      icon: Mic,
+      desc: "AI voice agents that sound human",
+      color: "text-orange-400",
+      bg: "bg-orange-400/10",
     },
   ];
 
@@ -79,12 +84,22 @@ export function Navbar() {
           {/* Desktop Nav */}
           <nav className="hidden md:flex items-center gap-6">
             {/* Products Dropdown */}
-            <div className="relative" ref={dropdownRef}>
+            <div
+              className="relative"
+              ref={dropdownRef}
+              onMouseEnter={() => {
+                if (hoverTimeoutRef.current) clearTimeout(hoverTimeoutRef.current);
+                setProductsOpen(true);
+              }}
+              onMouseLeave={() => {
+                hoverTimeoutRef.current = setTimeout(() => setProductsOpen(false), 150);
+              }}
+            >
               <button
                 onClick={() => setProductsOpen(!productsOpen)}
                 className={cn(
-                  "flex items-center gap-1 text-sm font-medium transition-colors",
-                  (isActive("/crm") || isActive("/erp")) ? "text-white" : "text-muted-foreground hover:text-white"
+                  "flex items-center gap-1 text-sm font-medium transition-colors py-2",
+                  (isActive("/crm") || isActive("/erp") || isActive("/voice-agent")) ? "text-white" : "text-muted-foreground hover:text-white"
                 )}
               >
                 Products
@@ -93,11 +108,11 @@ export function Navbar() {
               <AnimatePresence>
                 {productsOpen && (
                   <motion.div
-                    initial={{ opacity: 0, y: 8 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 8 }}
-                    transition={{ duration: 0.15 }}
-                    className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-64 rounded-2xl bg-[#111827]/95 backdrop-blur-xl border border-white/10 shadow-2xl shadow-black/40 overflow-hidden p-2"
+                    initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                    transition={{ duration: 0.2, ease: "easeOut" }}
+                    className="absolute top-full left-1/2 -translate-x-1/2 mt-1 w-64 rounded-2xl bg-[#111827]/95 backdrop-blur-xl border border-white/10 shadow-2xl shadow-black/40 overflow-hidden p-2"
                   >
                     {productLinks.map((item) => (
                       <Link
@@ -145,11 +160,11 @@ export function Navbar() {
 
           {/* Desktop CTAs */}
           <div className="hidden md:flex items-center gap-4">
-            <button
-              onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
+            <Link
+              href="/book-demo"
               className="text-sm font-medium bg-primary hover:bg-primary/90 text-white px-5 py-2 rounded-full shadow-[0_0_15px_rgba(59,130,246,0.3)] hover:shadow-[0_0_25px_rgba(59,130,246,0.5)] transition-all">
               Request Demo
-            </button>
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
@@ -206,11 +221,12 @@ export function Navbar() {
                 Pricing
               </Link>
               <div className="pt-4 flex flex-col gap-3">
-                <button
-                  onClick={() => { setMobileMenuOpen(false); document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" }); }}
+                <Link
+                  href="/book-demo"
+                  onClick={() => setMobileMenuOpen(false)}
                   className="w-full text-center text-base font-medium bg-primary text-white px-4 py-3 rounded-xl shadow-lg shadow-primary/20 transition-all">
                   Request Demo
-                </button>
+                </Link>
               </div>
             </div>
           </motion.div>

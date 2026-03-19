@@ -5,7 +5,11 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import Home from "@/pages/Home";
 import CRMPage from "@/pages/CRMPage";
 import ERPPage from "@/pages/ERPPage";
+import VoiceAgentPage from "@/pages/VoiceAgentPage";
 import PricingPage from "@/pages/PricingPage";
+import BookDemoPage from "@/pages/BookDemoPage";
+import PrivacyPolicyPage from "@/pages/PrivacyPolicyPage";
+import TermsOfServicePage from "@/pages/TermsOfServicePage";
 import NotFound from "@/pages/not-found";
 
 const queryClient = new QueryClient({
@@ -23,7 +27,11 @@ function Router() {
       <Route path="/" component={Home} />
       <Route path="/crm" component={CRMPage} />
       <Route path="/erp" component={ERPPage} />
+      <Route path="/voice-agent" component={VoiceAgentPage} />
       <Route path="/pricing" component={PricingPage} />
+      <Route path="/book-demo" component={BookDemoPage} />
+      <Route path="/privacy-policy" component={PrivacyPolicyPage} />
+      <Route path="/terms-of-service" component={TermsOfServicePage} />
       <Route component={NotFound} />
     </Switch>
   );
