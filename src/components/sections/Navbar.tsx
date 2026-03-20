@@ -3,6 +3,7 @@ import { Link, useLocation } from "wouter";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ChevronDown, Sparkles, Activity, Mic } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { HoverBorderGradient } from "@/components/ui/hover-border-gradient";
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -157,12 +158,14 @@ export function Navbar() {
 
           {/* Desktop CTAs */}
           <div className="hidden md:flex items-center gap-4">
-            <a
+            <HoverBorderGradient
+              as="a"
               href="/#contact"
-              className="text-sm font-medium bg-[#f97316] hover:bg-[#ea6c0a] text-white px-5 py-2 rounded-full shadow-[0_0_15px_rgba(249,115,22,0.3)] hover:shadow-[0_0_25px_rgba(249,115,22,0.5)] transition-all"
+              containerClassName="rounded-full"
+              className="bg-[#0A0E1A] text-white flex items-center space-x-2 text-sm font-medium px-5 py-2"
             >
               Request Demo
-            </a>
+            </HoverBorderGradient>
           </div>
 
           {/* Mobile Menu Button */}
@@ -222,7 +225,7 @@ export function Navbar() {
                 <a
                   href="/#contact"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="w-full text-center text-base font-medium bg-[#f97316] hover:bg-[#ea6c0a] text-white px-4 py-3 rounded-xl shadow-lg shadow-[rgba(249,115,22,0.2)] transition-all"
+                  className="w-full text-center text-base font-medium bg-primary hover:bg-blue-600 text-white px-4 py-3 rounded-xl shadow-lg shadow-[rgba(59,130,246,0.2)] transition-all"
                 >
                   Request Demo
                 </a>

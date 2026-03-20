@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Sparkles, Database, Workflow, PhoneCall, LayoutDashboard, CheckCircle2, TrendingUp } from "lucide-react";
+import { HoverBorderGradient } from "@/components/ui/hover-border-gradient";
 
 export function Hero() {
   return (
@@ -45,11 +46,14 @@ export function Hero() {
             transition={{ duration: 0.5, delay: 0.3 }}
             className="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start"
           >
-            <a
+            <HoverBorderGradient
+              as="a"
               href="/#contact"
-              className="w-full sm:w-auto px-6 py-3 rounded-full bg-[#f97316] hover:bg-[#ea6c0a] text-white font-semibold text-base shadow-[0_0_20px_rgba(249,115,22,0.3)] hover:shadow-[0_0_30px_rgba(249,115,22,0.5)] transition-all duration-300 text-center">
+              containerClassName="rounded-full"
+              className="bg-[#0A0E1A] text-white flex items-center justify-center px-6 py-3 font-semibold text-base"
+            >
               Book a Demo
-            </a>
+            </HoverBorderGradient>
           </motion.div>
           
           <motion.div

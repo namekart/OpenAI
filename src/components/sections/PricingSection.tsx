@@ -213,7 +213,8 @@ function PricingCard({ plan, index }: { plan: Plan; index: number }) {
         </p>
 
         {/* CTA Button */}
-        <motion.button
+        <motion.a
+          href="/#contact"
           whileTap={{ scale: 0.96 }}
           animate={{
             backgroundColor: "#f97316",
@@ -224,10 +225,10 @@ function PricingCard({ plan, index }: { plan: Plan; index: number }) {
             color: "#ffffff",
           }}
           transition={{ duration: 0.22 }}
-          className="w-full h-10 rounded-lg text-sm font-semibold mb-5 border"
+          className="w-full h-10 rounded-lg text-sm font-semibold mb-5 border flex items-center justify-center"
         >
           {plan.ctaLabel}
-        </motion.button>
+        </motion.a>
 
         {/* Divider */}
         <div className="flex items-center gap-3 mb-4">
@@ -329,17 +330,6 @@ export function PricingSection() {
           ))}
         </div>
 
-        {/* Footer note */}
-        <motion.p
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={fadeUp}
-          custom={4}
-          className="text-center text-sm text-[#94a3b8]/70 mt-10"
-        >
-          All plans include a <span className="text-white/80">3-day free trial</span>. No credit card required.
-        </motion.p>
       </div>
     </section>
   );

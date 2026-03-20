@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Send, CheckCircle, AlertCircle, Loader2 } from "lucide-react";
+import { CheckCircle, AlertCircle } from "lucide-react";
 
 type Status = "idle" | "loading" | "success" | "error";
 
@@ -8,6 +8,13 @@ export function GetInTouch() {
   const [form, setForm] = useState({ name: "", email: "", company: "", message: "" });
   const [status, setStatus] = useState<Status>("idle");
   const [errorMsg, setErrorMsg] = useState("");
+
+  useEffect(() => {
+    if (status === "success") {
+      const timer = setTimeout(() => setStatus("idle"), 4000);
+      return () => clearTimeout(timer);
+    }
+  }, [status]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -184,19 +191,41 @@ export function GetInTouch() {
                     <button
                       type="submit"
                       disabled={status === "loading"}
-                      className="flex items-center gap-2 px-8 py-3.5 rounded-full bg-[#f97316] hover:bg-[#ea6c0a] disabled:opacity-60 disabled:cursor-not-allowed text-white font-semibold text-sm shadow-[0_0_24px_rgba(249,115,22,0.4)] hover:shadow-[0_0_36px_rgba(249,115,22,0.6)] transition-all duration-300 group"
+                      className={`send-btn${status === "loading" ? " is-sent" : ""}`}
                     >
-                      {status === "loading" ? (
-                        <>
-                          <Loader2 className="w-4 h-4 animate-spin" />
-                          Sending…
-                        </>
-                      ) : (
-                        <>
-                          Send Message
-                          <Send className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                        </>
-                      )}
+                      <div className="outline">
+                        <div className="outline__inner" />
+                      </div>
+                      <div className="state state--default">
+                        <div className="icon">
+                          <svg height="1em" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M22 2L11 13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                            <path d="M22 2L15 22L11 13L2 9L22 2Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                          </svg>
+                        </div>
+                        <p>
+                          {"Send Message".split("").map((ch, i) => (
+                            <span key={i} style={{ "--i": i } as React.CSSProperties}>
+                              {ch === " " ? "\u00A0" : ch}
+                            </span>
+                          ))}
+                        </p>
+                      </div>
+                      <div className="state state--sent">
+                        <div className="icon">
+                          <svg height="1em" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                            <polyline points="22 4 12 14.01 9 11.01" />
+                          </svg>
+                        </div>
+                        <p>
+                          {"Sent".split("").map((ch, i) => (
+                            <span key={i} style={{ "--i": i + 1 } as React.CSSProperties}>
+                              {ch}
+                            </span>
+                          ))}
+                        </p>
+                      </div>
                     </button>
                   </div>
                 </form>

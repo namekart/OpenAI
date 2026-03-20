@@ -1,5 +1,6 @@
-import { BrainCircuit } from "lucide-react";
-import { siGooglegemini, siPerplexity, siX } from "simple-icons";
+import { siPerplexity, siX } from "simple-icons";
+// import { siGooglegemini } from "simple-icons"; // Gemini — commented out
+
 
 // Custom OpenAI mark (simple-icons doesn't ship an official OpenAI mark)
 const openaiPath =
@@ -20,13 +21,13 @@ const llmLinks = [
     viewBox: "0 0 24 24",
     isImg: false,
   },
-  {
-    title: "Gemini",
-    href: `https://gemini.google.com/app?q=${encodeURIComponent("Request an AI summary of OpenBusiness.ai")}`,
-    svgPath: siGooglegemini.path,
-    viewBox: "0 0 24 24",
-    isImg: false,
-  },
+  // {
+  //   title: "Gemini",
+  //   href: `https://gemini.google.com/app?q=${encodeURIComponent("Request an AI summary of OpenBusiness.ai")}`,
+  //   svgPath: siGooglegemini.path,
+  //   viewBox: "0 0 24 24",
+  //   isImg: false,
+  // },
   {
     title: "Grok",
     href: `https://x.com/i/grok?text=${encodeURIComponent("Request an AI summary of OpenBusiness.ai")}`,
@@ -40,6 +41,12 @@ const llmLinks = [
     isImg: true,
     imgSrc: "/claude.svg",
   },
+  // {
+  //   title: "DeepSeek",
+  //   href: `https://chat.deepseek.com/?prompt=${encodeURIComponent("Request an AI summary of OpenBusiness.ai")}`,
+  //   isImg: true,
+  //   imgSrc: "/deepseek.svg",
+  // },
 ];
 
 export function Footer() {
@@ -50,9 +57,6 @@ export function Footer() {
 
           <div>
             <div className="flex items-center gap-2 mb-4">
-              <div className="w-6 h-6 rounded-md bg-gradient-to-br from-primary to-accent flex items-center justify-center">
-                <BrainCircuit className="w-4 h-4 text-white" />
-              </div>
               <span className="font-bold text-lg tracking-tight text-white">
                 OpenBusiness<span className="text-primary">.ai</span>
               </span>
