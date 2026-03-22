@@ -3,14 +3,9 @@ import { motion } from "framer-motion";
 const BLUE = "#3B82F6";
 const VIOLET = "#8B5CF6";
 
-// Cycle: 4s total
-// t=0s  → Line1 forward  (CRM → AI)
-// t=1s  → Line2 forward  (AI  → Outputs)
-// t=2s  → Line2 return   (Outputs → AI)
-// t=3s  → Line1 return   (AI  → CRM)
 const DURATION = 1;
 const CYCLE = 4;
-const REPEAT_DELAY = CYCLE - DURATION; // 3s
+const REPEAT_DELAY = CYCLE - DURATION;
 
 function FlowParticle({
   dir,
@@ -24,7 +19,6 @@ function FlowParticle({
   const isFwd = dir === "fwd";
   return (
     <>
-      {/* Glowing sweep gradient */}
       <motion.div
         className="absolute inset-0"
         style={{
@@ -39,7 +33,6 @@ function FlowParticle({
           ease: "easeInOut",
         }}
       />
-      {/* Bright leading dot */}
       <motion.div
         className="absolute top-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full"
         style={{
@@ -78,23 +71,18 @@ function AnimatedConnector({
 }) {
   return (
     <div className="hidden md:flex items-center gap-1 shrink-0">
-      {/* Line */}
       <div className="relative w-16 h-0.5 overflow-hidden rounded-full">
-        {/* Dim base */}
         <div className="absolute inset-0 bg-white/10" />
-        {/* Forward particle */}
         <FlowParticle dir="fwd" color={fwdColor} delay={fwdDelay} />
-        {/* Return particle */}
         <FlowParticle dir="ret" color={retColor} delay={retDelay} />
       </div>
-      {/* Arrow */}
       <motion.span
         style={{ color: fwdColor }}
         animate={{ opacity: [0.3, 1, 0.3] }}
         transition={{ duration: 2, repeat: Infinity }}
         className="text-lg leading-none"
       >
-        →
+        &rarr;
       </motion.span>
     </div>
   );
@@ -104,10 +92,12 @@ export function Integrations() {
   const logos = [
     { name: "Salesforce", color: "text-[#00A1E0]" },
     { name: "HubSpot", color: "text-[#FF7A59]" },
-    { name: "Zoho CRM", color: "text-[#2C365D]" },
-    { name: "MS Dynamics", color: "text-[#002050]" },
-    { name: "Odoo", color: "text-[#714B67]" },
-    { name: "ERPNext", color: "text-[#0089FF]" },
+    { name: "Zoho", color: "text-[#2C365D]" },
+    { name: "Zendesk", color: "text-[#03363D]" },
+    { name: "Freshdesk", color: "text-[#25C16F]" },
+    { name: "Tally", color: "text-[#E84C3D]" },
+    { name: "Stripe", color: "text-[#635BFF]" },
+    { name: "Slack", color: "text-[#E01E5A]" },
   ];
 
   return (
@@ -122,21 +112,21 @@ export function Integrations() {
           viewport={{ once: true }}
           className="text-sm font-semibold tracking-wider text-muted-foreground uppercase mb-8"
         >
-          Works with the tools your business already uses
+          Connects to the systems your business already runs
         </motion.p>
 
-        <div className="flex flex-wrap justify-center items-center gap-4 md:gap-8 lg:gap-12">
+        <div className="flex flex-wrap justify-center items-center gap-4 md:gap-6 lg:gap-8">
           {logos.map((logo, index) => (
             <motion.div
               key={logo.name}
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-              className="px-6 py-3 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center backdrop-blur-sm hover:bg-white/10 transition-colors cursor-default"
+              transition={{ delay: index * 0.08 }}
+              className="px-5 py-3 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center backdrop-blur-sm hover:bg-white/10 transition-colors cursor-default"
             >
               <span
-                className={`font-bold text-lg tracking-tight text-white/80 ${logo.color.replace(
+                className={`font-bold text-base tracking-tight text-white/80 ${logo.color.replace(
                   "text-",
                   "hover:text-"
                 )} transition-colors`}
@@ -154,7 +144,7 @@ export function Integrations() {
           transition={{ delay: 0.4 }}
         >
           <div className="mt-12 flex flex-col md:flex-row items-center justify-center gap-4">
-            {/* Left: CRM/ERP box */}
+            {/* Left: Your Systems */}
             <motion.div
               className="px-6 py-4 rounded-xl bg-white/3 border border-white/10 text-center min-w-40"
               animate={{
@@ -163,15 +153,14 @@ export function Integrations() {
               transition={{ duration: CYCLE, repeat: Infinity, ease: "easeInOut", delay: 0 }}
             >
               <p className="text-xs text-muted-foreground mb-1">Your Systems</p>
-              <p className="text-sm font-semibold text-white">CRM / ERP</p>
+              <p className="text-sm font-semibold text-white">CRM + Support + Billing</p>
               <div className="mt-2 flex justify-center gap-1">
                 <span className="w-2 h-2 rounded-full bg-[#00A1E0]" />
-                <span className="w-2 h-2 rounded-full bg-[#FF7A59]" />
-                <span className="w-2 h-2 rounded-full bg-[#0089FF]" />
+                <span className="w-2 h-2 rounded-full bg-[#25C16F]" />
+                <span className="w-2 h-2 rounded-full bg-[#E84C3D]" />
               </div>
             </motion.div>
 
-            {/* Connector 1: CRM→AI (fwd t=0), AI→CRM (ret t=3) */}
             <AnimatedConnector
               fwdColor={BLUE}
               retColor={VIOLET}
@@ -199,10 +188,9 @@ export function Integrations() {
                 <span className="text-primary text-xs font-bold">AI</span>
               </motion.div>
               <p className="text-sm font-bold text-white">OpenBusiness.ai</p>
-              <p className="text-xs text-primary mt-1">Intelligence Layer</p>
+              <p className="text-xs text-primary mt-1">AI Workforce</p>
             </motion.div>
 
-            {/* Connector 2: AI→Outputs (fwd t=1), Outputs→AI (ret t=2) */}
             <AnimatedConnector
               fwdColor={VIOLET}
               retColor={BLUE}
@@ -220,7 +208,7 @@ export function Integrations() {
             >
               <p className="text-xs text-muted-foreground mb-2">AI Outputs</p>
               <div className="space-y-1">
-                {["Insights", "Automation", "Voice"].map((item, i) => (
+                {["Detect", "Decide", "Act"].map((item, i) => (
                   <motion.p
                     key={item}
                     className="text-xs text-white bg-white/5 rounded px-2 py-0.5"
@@ -242,7 +230,7 @@ export function Integrations() {
           transition={{ delay: 0.6 }}
           className="mt-8 text-sm text-muted-foreground"
         >
-          No migration required. No data lock-in. Just AI on top of what you already have.
+          3 integrations. 5 minutes. No migration required — just AI on top of what you already have.
         </motion.p>
       </div>
     </section>

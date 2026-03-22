@@ -1,14 +1,14 @@
 import { motion } from "framer-motion";
-import { Car, Building2, Cloud, Stethoscope, ShoppingBag, Briefcase } from "lucide-react";
+import { Cloud, Factory, Building2, Briefcase, ShoppingBag, Stethoscope } from "lucide-react";
 
 export function Industries() {
   const industries = [
-    { name: "Automotive", icon: <Car className="w-6 h-6" />, desc: "AI-driven sales, service reminders, and multilingual agents" },
-    { name: "Real Estate", icon: <Building2 className="w-6 h-6" />, desc: "Lead qualification, property matching, and automated follow-ups" },
-    { name: "SaaS", icon: <Cloud className="w-6 h-6" />, desc: "Trial conversion, churn prediction, and onboarding automation" },
-    { name: "Healthcare", icon: <Stethoscope className="w-6 h-6" />, desc: "Appointment reminders, patient engagement, and intake automation" },
-    { name: "Retail", icon: <ShoppingBag className="w-6 h-6" />, desc: "Inventory alerts, customer loyalty, and reorder automation" },
-    { name: "Service Businesses", icon: <Briefcase className="w-6 h-6" />, desc: "Scheduling, client communications, and proposal follow-ups" },
+    { name: "B2B SaaS", icon: <Cloud className="w-6 h-6" />, desc: "Churn prediction, trial conversion, and automated onboarding across systems" },
+    { name: "Manufacturing", icon: <Factory className="w-6 h-6" />, desc: "Procurement optimization, vendor cost tracking, and supply chain alerts" },
+    { name: "Professional Services", icon: <Briefcase className="w-6 h-6" />, desc: "Client revenue risk detection, project health monitoring, and billing automation" },
+    { name: "Mid-Market Enterprise", icon: <Building2 className="w-6 h-6" />, desc: "Cross-department coordination, revenue forecasting, and operations intelligence" },
+    { name: "Retail & E-Commerce", icon: <ShoppingBag className="w-6 h-6" />, desc: "Customer retention, inventory-to-billing sync, and reorder automation" },
+    { name: "Healthcare", icon: <Stethoscope className="w-6 h-6" />, desc: "Patient engagement, billing reconciliation, and appointment follow-ups" },
   ];
 
   return (
@@ -29,7 +29,7 @@ export function Industries() {
             viewport={{ once: true }}
             className="text-3xl md:text-4xl font-bold text-white mb-3"
           >
-            Built for teams across industries
+            Built for companies with 200+ employees
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -38,7 +38,7 @@ export function Industries() {
             transition={{ delay: 0.1 }}
             className="text-muted-foreground max-w-xl mx-auto text-sm"
           >
-            OpenBusiness.ai adapts to different workflows while working on top of your existing systems.
+            Every company running 2+ business systems has revenue leaking through the gaps. OpenBusiness.ai connects the dots across industries.
           </motion.p>
         </div>
 

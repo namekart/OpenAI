@@ -4,8 +4,8 @@ import { Hero } from "@/components/sections/Hero";
 import { Integrations } from "@/components/sections/Integrations";
 import { HowItWorks } from "@/components/sections/HowItWorks";
 import { Features } from "@/components/sections/Features";
-import { VoiceHighlight } from "@/components/sections/VoiceHighlight";
 import { Benefits } from "@/components/sections/Benefits";
+import { VoiceHighlight } from "@/components/sections/VoiceHighlight";
 import { Industries } from "@/components/sections/Industries";
 import { GetInTouch } from "@/components/sections/GetInTouch";
 import { Footer } from "@/components/sections/Footer";
@@ -26,8 +26,8 @@ export default function Home() {
         <Integrations />
         <HowItWorks />
         <Features />
-<VoiceHighlight />
         <Benefits />
+        <VoiceHighlight />
         <Industries />
         <GetInTouch />
       </main>

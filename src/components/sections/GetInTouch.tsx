@@ -5,7 +5,7 @@ import { CheckCircle, AlertCircle } from "lucide-react";
 type Status = "idle" | "loading" | "success" | "error";
 
 export function GetInTouch() {
-  const [form, setForm] = useState({ name: "", email: "", company: "", message: "" });
+  const [form, setForm] = useState({ name: "", email: "", company: "", companySize: "", tools: "", message: "" });
   const [status, setStatus] = useState<Status>("idle");
   const [errorMsg, setErrorMsg] = useState("");
 
@@ -14,9 +14,10 @@ export function GetInTouch() {
       const timer = setTimeout(() => setStatus("idle"), 4000);
       return () => clearTimeout(timer);
     }
+    return undefined;
   }, [status]);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
@@ -36,7 +37,7 @@ export function GetInTouch() {
       if (!res.ok) throw new Error(data.error || "Something went wrong.");
 
       setStatus("success");
-      setForm({ name: "", email: "", company: "", message: "" });
+      setForm({ name: "", email: "", company: "", companySize: "", tools: "", message: "" });
     } catch (err: unknown) {
       setStatus("error");
       setErrorMsg(err instanceof Error ? err.message : "Something went wrong.");
@@ -63,14 +64,14 @@ export function GetInTouch() {
         >
           <span className="inline-flex items-center gap-2 text-xs font-semibold tracking-widest uppercase text-primary mb-4 px-4 py-1.5 rounded-full border border-primary/20 bg-primary/5">
             <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
-            Contact Us
+            48-Hour Proof of Value
           </span>
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 tracking-tight">
-            Let's Build Something{" "}
-            <span className="text-gradient-primary">Extraordinary</span>
+            Let Us Scan Your Systems.{" "}
+            <span className="text-gradient-primary">48 Hours.</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            Ready to add AI intelligence to your business stack? Our team is here to help you get started — no pressure, just real answers.
+            We'll connect to your systems and send you a report of every at-risk account and why. If even one insight is new to you, let's talk about a pilot.
           </p>
         </motion.div>
 
@@ -96,22 +97,22 @@ export function GetInTouch() {
                   <div className="w-20 h-20 rounded-full bg-green-400/10 border border-green-400/20 flex items-center justify-center">
                     <CheckCircle className="w-10 h-10 text-green-400" />
                   </div>
-                  <h3 className="text-2xl font-bold text-white">Message Received!</h3>
+                  <h3 className="text-2xl font-bold text-white">Request Received!</h3>
                   <p className="text-muted-foreground max-w-sm text-sm leading-relaxed">
-                    Thanks for reaching out. Our team will review your message and get back to you within 24 hours.
+                    We'll review your setup and get back to you within 24 hours to schedule your 48-hour scan.
                   </p>
                   <button
                     onClick={() => setStatus("idle")}
                     className="mt-2 px-6 py-2.5 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 text-white text-sm font-medium transition-all"
                   >
-                    Send another message
+                    Send another request
                   </button>
                 </motion.div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-5 relative z-10">
                   <div className="mb-6">
-                    <h3 className="text-xl font-bold text-white mb-1">Send us a message</h3>
-                    <p className="text-sm text-muted-foreground">We'll get back to you within 24 hours.</p>
+                    <h3 className="text-xl font-bold text-white mb-1">Get your free revenue risk report</h3>
+                    <p className="text-sm text-muted-foreground">We'll connect to your systems and show you what we find — no commitment required.</p>
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
@@ -148,17 +149,53 @@ export function GetInTouch() {
                     </div>
                   </div>
 
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                    <div className="flex flex-col gap-1.5">
+                      <label htmlFor="company" className="text-xs font-semibold text-white/60 uppercase tracking-wider">
+                        Company
+                      </label>
+                      <input
+                        id="company"
+                        name="company"
+                        type="text"
+                        value={form.company}
+                        onChange={handleChange}
+                        placeholder="Acme Corp"
+                        className="w-full px-4 py-3 rounded-xl bg-white/[0.05] border border-white/[0.08] text-white placeholder:text-white/25 focus:outline-none focus:border-primary/60 focus:ring-2 focus:ring-primary/20 transition-all text-sm"
+                      />
+                    </div>
+
+                    <div className="flex flex-col gap-1.5">
+                      <label htmlFor="companySize" className="text-xs font-semibold text-white/60 uppercase tracking-wider">
+                        Company Size
+                      </label>
+                      <select
+                        id="companySize"
+                        name="companySize"
+                        value={form.companySize}
+                        onChange={handleChange}
+                        className="w-full px-4 py-3 rounded-xl bg-white/[0.05] border border-white/[0.08] text-white focus:outline-none focus:border-primary/60 focus:ring-2 focus:ring-primary/20 transition-all text-sm appearance-none"
+                      >
+                        <option value="" className="bg-[#0F1423] text-white/50">Select size</option>
+                        <option value="50-200" className="bg-[#0F1423]">50-200 employees</option>
+                        <option value="200-500" className="bg-[#0F1423]">200-500 employees</option>
+                        <option value="500-1000" className="bg-[#0F1423]">500-1,000 employees</option>
+                        <option value="1000+" className="bg-[#0F1423]">1,000+ employees</option>
+                      </select>
+                    </div>
+                  </div>
+
                   <div className="flex flex-col gap-1.5">
-                    <label htmlFor="company" className="text-xs font-semibold text-white/60 uppercase tracking-wider">
-                      Company
+                    <label htmlFor="tools" className="text-xs font-semibold text-white/60 uppercase tracking-wider">
+                      Tools You Currently Use
                     </label>
                     <input
-                      id="company"
-                      name="company"
+                      id="tools"
+                      name="tools"
                       type="text"
-                      value={form.company}
+                      value={form.tools}
                       onChange={handleChange}
-                      placeholder="Acme Corp"
+                      placeholder="e.g., Salesforce, Zendesk, Tally, HubSpot..."
                       className="w-full px-4 py-3 rounded-xl bg-white/[0.05] border border-white/[0.08] text-white placeholder:text-white/25 focus:outline-none focus:border-primary/60 focus:ring-2 focus:ring-primary/20 transition-all text-sm"
                     />
                   </div>
@@ -171,10 +208,10 @@ export function GetInTouch() {
                       id="message"
                       name="message"
                       required
-                      rows={5}
+                      rows={4}
                       value={form.message}
                       onChange={handleChange}
-                      placeholder="Tell us about your current CRM/ERP setup and what you're looking to achieve..."
+                      placeholder="Tell us about your current setup and what challenges you're facing with cross-system visibility..."
                       className="w-full px-4 py-3 rounded-xl bg-white/[0.05] border border-white/[0.08] text-white placeholder:text-white/25 focus:outline-none focus:border-primary/60 focus:ring-2 focus:ring-primary/20 transition-all resize-none text-sm"
                     />
                   </div>
@@ -187,7 +224,7 @@ export function GetInTouch() {
                   )}
 
                   <div className="flex items-center justify-between pt-2">
-                    <p className="text-xs text-muted-foreground">No credit card required.</p>
+                    <p className="text-xs text-muted-foreground">No commitment required.</p>
                     <button
                       type="submit"
                       disabled={status === "loading"}
@@ -204,7 +241,7 @@ export function GetInTouch() {
                           </svg>
                         </div>
                         <p>
-                          {"Send Message".split("").map((ch, i) => (
+                          {"Get Report".split("").map((ch, i) => (
                             <span key={i} style={{ "--i": i } as React.CSSProperties}>
                               {ch === " " ? "\u00A0" : ch}
                             </span>

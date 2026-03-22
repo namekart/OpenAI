@@ -5,22 +5,17 @@ export function HowItWorks() {
     {
       num: "01",
       title: "Connect",
-      desc: "Connect your existing CRM or ERP in minutes via secure API."
+      desc: "Connect your CRM, support desk, and billing system in minutes. 3 integrations, 5 minutes — that's all the setup."
     },
     {
       num: "02",
-      title: "Understand",
-      desc: "AI learns your business context, workflows, and data patterns."
+      title: "Monitor",
+      desc: "AI continuously watches for risk patterns across all connected systems — combining signals no single tool can see alone."
     },
     {
       num: "03",
-      title: "Intelligentize",
-      desc: "Get real-time insights, smart automation, and deploy voice agents."
-    },
-    {
-      num: "04",
-      title: "Accelerate",
-      desc: "Your team moves faster, customers get better service automatically."
+      title: "Act",
+      desc: "From flagging at-risk accounts to drafting retention emails and pausing renewals — the AI detects, decides, and acts."
     }
   ];
 
@@ -42,7 +37,7 @@ export function HowItWorks() {
             viewport={{ once: true }}
             className="text-3xl md:text-4xl font-bold text-white mb-4"
           >
-            How it works — 4 steps to AI-enabled business systems
+            How it works — 3 steps to autonomous operations
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -51,13 +46,13 @@ export function HowItWorks() {
             transition={{ delay: 0.1 }}
             className="text-muted-foreground max-w-2xl mx-auto"
           >
-            No migration, no disruption. Just connect your existing tools and let AI start working for your team immediately.
+            No migration, no disruption. Connect your existing systems and let the AI workforce start protecting your revenue immediately.
           </motion.p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 relative">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
           {/* Connecting Line (Desktop) */}
-          <div className="hidden md:block absolute top-12 left-[10%] right-[10%] h-[1px] bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
+          <div className="hidden md:block absolute top-12 left-[15%] right-[15%] h-[1px] bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
 
           {steps.map((step, index) => (
             <motion.div
